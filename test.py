@@ -13,6 +13,21 @@ p = range(1, 21)
 
 urlTemplate = Template("http://zjzx.zjnu.edu.cn/test/Default.aspx?cid=${cid}&pid=${pid}")
 
+'''
+drop table choices;
+drop table multi_choice;
+drop table single_choice;
+drop table true_false;
+
+CREATE TABLE choices(id integer primary key autoincrement, question_id integer, title string);
+
+CREATE TABLE multi_choice(id integer primary key autoincrement, title string, digest string, appear_count int, answer string, cid integer, pid integer);
+
+CREATE TABLE single_choice(id integer primary key autoincrement, title string, digest string, appear_count int, answer string, cid integer, pid integer);
+
+CREATE TABLE true_false(id integer primary key autoincrement, title string, digest string, appear_count int, answer string, cid integer, pid integer);
+'''
+
 
 def get_page_text(cid0, pid0):
     url = urlTemplate.substitute(cid=cid0, pid=pid0)
