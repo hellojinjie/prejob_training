@@ -38,7 +38,6 @@ def get_page_text(cid0, pid0):
     page = BeautifulSoup(response.text)
     view_state = page.find("input", id="__VIEWSTATE")
     event_validation = page.find("input", id="__EVENTVALIDATION")
-    print(response.url)
     data = {
         "drop1": cid0,
         "drop2": pid0,
@@ -155,18 +154,15 @@ def parse_question(text, cid0, pid0):
 
 
 def do_work(cid0, pid0):
-
-    i = 0
-    while i < 1000:
-        try:
-            page_text = get_page_text(cid0, pid0)
-            parse_question(page_text, cid0, pid0)
-            break
-        except Exception as error:
-            print("cid: %s, pid: %s , %s, try again" % (cid0, pid0, error.args))
-            time.sleep(1)
-            continue
+    url = urlTemplate.substitute(cid=cid0, pid=pid0)
+    try:
+        page_text = get_page_text(cid0, pid0)
+        parse_question(page_text, cid0, pid0)
+        print("success:%s" %(url,))
+    except Exception as error:
+        print("failed:%s" %(url,))
 
 for cid in c:
     for pid in p:
         do_work(cid, pid)
+        time.sleep(2)
