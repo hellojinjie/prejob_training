@@ -123,14 +123,14 @@ def parse_question(text, cid0, pid0):
                 cur.execute("insert into multi_choice (title, digest, appear_count, answer, cid, pid) values (?,?,?,?,?,?)",
                             (question, digest, appear_count, answer, cid0, pid0))
                 question_id = cur.lastrowid
-                cur.execute("insert into choices (question_id, title) values (?, ?, 2)", (question_id, selection_a))
-                cur.execute("insert into choices (question_id, title) values (?, ?, 2)", (question_id, selection_b))
-                cur.execute("insert into choices (question_id, title) values (?, ?, 2)", (question_id, selection_c))
-                cur.execute("insert into choices (question_id, title) values (?, ?, 2)", (question_id, selection_d))
+                cur.execute("insert into choices (question_id, title, type) values (?, ?, 2)", (question_id, selection_a))
+                cur.execute("insert into choices (question_id, title, type) values (?, ?, 2)", (question_id, selection_b))
+                cur.execute("insert into choices (question_id, title, type) values (?, ?, 2)", (question_id, selection_c))
+                cur.execute("insert into choices (question_id, title, type) values (?, ?, 2)", (question_id, selection_d))
                 if selection_e:
-                    cur.execute("insert into choices (question_id, title) values (?, ?, 2)", (question_id, selection_e))
+                    cur.execute("insert into choices (question_id, title, type) values (?, ?, 2)", (question_id, selection_e))
                 if selection_f:
-                    cur.execute("insert into choices (question_id, title) values (?, ?, 2)", (question_id, selection_f))
+                    cur.execute("insert into choices (question_id, title, type) values (?, ?, 2)", (question_id, selection_f))
 
         for num in range(2, 22):
             num_zfill = str(num).zfill(2)
