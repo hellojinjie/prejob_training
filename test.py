@@ -32,7 +32,7 @@ CREATE TABLE true_false(id integer primary key autoincrement, title string, dige
 def get_page_text(cid0, pid0):
     url = urlTemplate.substitute(cid=cid0, pid=pid0)
     session = requests.session()
-    session.headers.update({'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36'})
+    session.headers.update({'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit'})
     response = session.get(url)
 
     page = BeautifulSoup(response.text)
